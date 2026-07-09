@@ -1,0 +1,18 @@
+# Last updated: 7/9/2026, 10:07:47 AM
+from typing import List
+
+class Solution:
+    def minPatches(self, nums: List[int], n: int) -> int:
+        miss = 1
+        i = 0
+        patches = 0
+
+        while miss <= n:
+            if i < len(nums) and nums[i] <= miss:
+                miss += nums[i]
+                i += 1
+            else:
+                miss += miss
+                patches += 1
+
+        return patches
