@@ -1,0 +1,31 @@
+# Last updated: 7/9/2026, 10:07:19 AM
+from typing import List
+
+class Solution:
+    def sortArray(self, nums: List[int]) -> List[int]:
+
+        def merge_sort(arr):
+            if len(arr) <= 1:
+                return arr
+
+            mid = len(arr) // 2
+            left = merge_sort(arr[:mid])
+            right = merge_sort(arr[mid:])
+
+            merged = []
+            i = j = 0
+
+            while i < len(left) and j < len(right):
+                if left[i] <= right[j]:
+                    merged.append(left[i])
+                    i += 1
+                else:
+                    merged.append(right[j])
+                    j += 1
+
+            merged.extend(left[i:])
+            merged.extend(right[j:])
+
+            return merged
+
+        return merge_sort(nums)
